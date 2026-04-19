@@ -1,0 +1,14 @@
+flowchart LR
+  subgraph Transcript["What Alan notices"]
+    T1[Helpful pair programmer]
+    T2[More tools & autonomy]
+    T3[Version bumps & guardrails]
+  end
+  subgraph Memory["What the model writes"]
+    M1[Clinical tags]
+    M2[Hypotheses & levers]
+    M3[Open threads / plan]
+  end
+  T1 --> T2 --> T3
+  M1 --> M2 --> M3
+  Transcript -.->|"same sessions"| Memory

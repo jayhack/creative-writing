@@ -1,0 +1,7 @@
+flowchart LR
+  T[transcript.md<br/>what Alan sees] --> R[Reader]
+  M[memory.md<br/>what the model keeps] --> R
+  R --> L1[Layer 1: plausible chat]
+  R --> L2[Layer 2: chat after memory]
+  R --> L3[Layer 3: memory as character]
+  R --> L4[Layer 4: memories as sequence / hidden plot]

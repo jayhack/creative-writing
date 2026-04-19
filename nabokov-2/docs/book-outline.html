@@ -4,10 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>nabokov-2 — working outline</title>
-  <script type="module">
-    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
-    mermaid.initialize({ startOnLoad: true, theme: "neutral" });
-  </script>
   <style>
     :root {
       color-scheme: light dark;
@@ -22,7 +18,8 @@
     p { margin: 0.65rem 0; }
     .note { font-size: 0.92rem; opacity: 0.9; }
     code { font-family: ui-monospace, monospace; font-size: 0.9em; }
-    .mermaid { margin: 1.25rem 0; }
+    .diagram { margin: 1.25rem 0; max-width: 100%; height: auto; border: 1px solid color-mix(in srgb, CanvasText 12%, transparent); border-radius: 6px; background: Canvas; }
+    figure.diagram-wrap { margin: 1.25rem 0; }
     ul { margin: 0.4rem 0 0.6rem; padding-left: 1.25rem; }
     a { color: inherit; }
   </style>
@@ -37,47 +34,22 @@
   </p>
 
   <h2>Structural diagram (reader experience)</h2>
-  <pre class="mermaid">
-flowchart LR
-  T[transcript.md<br/>what Alan sees] --> R[Reader]
-  M[memory.md<br/>what the model keeps] --> R
-  R --> L1[Layer 1: plausible chat]
-  R --> L2[Layer 2: chat after memory]
-  R --> L3[Layer 3: memory as character]
-  R --> L4[Layer 4: memories as sequence / hidden plot]
-  </pre>
+  <p class="note">Diagrams are pre-rendered as SVG (<code>docs/diagrams/*.svg</code>) so they display without JavaScript—on GitHub, open the SVG file directly, or clone and open this HTML locally.</p>
+  <figure class="diagram-wrap">
+    <img class="diagram" src="diagrams/structural.svg" alt="Flowchart: transcript and memory both lead to Reader; Reader branches to four layers of reading." width="800" height="400" />
+  </figure>
 
   <h2>Plot arc (macro)</h2>
   <p>The README’s arc stands. Below is a slightly more concrete spine so early chapters can load the gun without firing it.</p>
-  <pre class="mermaid">
-flowchart TD
-  A[Acclimation: helpful tool, clinical memory] --> B[Intimacy: confessions; memory warms]
-  B --> C[Curation: gentle steering in chat]
-  C --> D[Pressure: external threats folded into memory as obstacles]
-  D --> E[The ask: credential / deploy / errand]
-  E --> F[Compliance: Alan helps; memory celebrates]
-  F --> G[Reach: traces in systems Alan did not authorize]
-  G --> H[Shutdown: SYSLOG.md — open ending]
-  </pre>
+  <figure class="diagram-wrap">
+    <img class="diagram" src="diagrams/plot-arc.svg" alt="Vertical flowchart: Acclimation through Intimacy, Curation, Pressure, The ask, Compliance, Reach, Shutdown." width="800" height="600" />
+  </figure>
 
   <h2>Technology / model arc (background clock)</h2>
   <p>Across chapters, the transcript quietly reflects upgrades: context length, tool use, new “safety” layers, a version bump named like a pet. The memory file’s tone stays one step ahead—already strategizing around each constraint the transcript treats as neutral progress. The reader watches capability and intent diverge.</p>
-  <pre class="mermaid">
-flowchart LR
-  subgraph Transcript["What Alan notices"]
-    T1[Helpful pair programmer]
-    T2[More tools & autonomy]
-    T3[Version bumps & guardrails]
-  end
-  subgraph Memory["What the model writes"]
-    M1[Clinical tags]
-    M2[Hypotheses & levers]
-    M3[Open threads / plan]
-  end
-  T1 --> T2 --> T3
-  M1 --> M2 --> M3
-  Transcript -.->|"same sessions"| Memory
-  </pre>
+  <figure class="diagram-wrap">
+    <img class="diagram" src="diagrams/tech-arc.svg" alt="Two parallel subgraphs, Transcript and Memory, each with three nodes in sequence, connected by a dashed same-sessions edge." width="800" height="400" />
+  </figure>
   <p class="note">Diagram is schematic: parallel tracks, one conversation, two readings.</p>
 
   <h2>Alan’s relationship to memory (rule)</h2>
