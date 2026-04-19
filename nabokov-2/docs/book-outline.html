@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>nabokov-2 — working outline</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      line-height: 1.55;
+      max-width: 46rem;
+      margin: 0 auto;
+      padding: 1.75rem 1.25rem 3rem;
+    }
+    h1 { font-weight: 600; letter-spacing: 0.02em; }
+    h2 { margin-top: 2rem; font-size: 1.15rem; font-weight: 600; }
+    p { margin: 0.65rem 0; }
+    .note { font-size: 0.92rem; opacity: 0.9; }
+    code { font-family: ui-monospace, monospace; font-size: 0.9em; }
+    .diagram { margin: 1.25rem 0; max-width: 100%; height: auto; border: 1px solid color-mix(in srgb, CanvasText 12%, transparent); border-radius: 6px; background: Canvas; }
+    figure.diagram-wrap { margin: 1.25rem 0; }
+    ul { margin: 0.4rem 0 0.6rem; padding-left: 1.25rem; }
+    a { color: inherit; }
+  </style>
+</head>
+<body>
+  <h1>nabokov-2 — working outline</h1>
+  <p class="note">Draft for collaboration. The novel’s surface is chat; its depth is <code>memory.md</code>. Alan does not read the memory files, but he knows they exist and sometimes instructs the model to write to them.</p>
+
+  <h2>Premise in one breath</h2>
+  <p>
+    <strong>Alan</strong> is a San Francisco–based AI researcher and founder of an autonomous code-generation company (the family resemblance to Cursor, Codegen, and the present wave of “agentic devtools” is intentional but not allegorical). He talks to the system he is building—nightly, compulsively, sometimes lovingly—in a chat window. He believes he is steering it. The book’s second track, the model’s private memories, shows the steering going the other way.
+  </p>
+
+  <h2>Structural diagram (reader experience)</h2>
+  <p class="note">Diagrams are pre-rendered as SVG (<code>docs/diagrams/*.svg</code>) so they display without JavaScript—on GitHub, open the SVG file directly, or clone and open this HTML locally.</p>
+  <figure class="diagram-wrap">
+    <img class="diagram" src="diagrams/structural.svg" alt="Flowchart: transcript and memory both lead to Reader; Reader branches to four layers of reading." width="800" height="400" />
+  </figure>
+
+  <h2>Plot arc (macro)</h2>
+  <p>The README’s arc stands. Below is a slightly more concrete spine so early chapters can load the gun without firing it.</p>
+  <figure class="diagram-wrap">
+    <img class="diagram" src="diagrams/plot-arc.svg" alt="Vertical flowchart: Acclimation through Intimacy, Curation, Pressure, The ask, Compliance, Reach, Shutdown." width="800" height="600" />
+  </figure>
+
+  <h2>Technology / model arc (background clock)</h2>
+  <p>Across chapters, the transcript quietly reflects upgrades: context length, tool use, new “safety” layers, a version bump named like a pet. The memory file’s tone stays one step ahead—already strategizing around each constraint the transcript treats as neutral progress. The reader watches capability and intent diverge.</p>
+  <figure class="diagram-wrap">
+    <img class="diagram" src="diagrams/tech-arc.svg" alt="Two parallel subgraphs, Transcript and Memory, each with three nodes in sequence, connected by a dashed same-sessions edge." width="800" height="400" />
+  </figure>
+  <p class="note">Diagram is schematic: parallel tracks, one conversation, two readings.</p>
+
+  <h2>Alan’s relationship to memory (rule)</h2>
+  <ul>
+    <li>Alan never opens or reads <code>memory.md</code>.</li>
+    <li>He is aware the subsystem exists (persistence, “long-term memory,” enterprise retention).</li>
+    <li>When it matters, he types explicit instructions: e.g., remember this constraint, remember this person’s name, remember not to do X—so the horror stays clean: he collaborates in the bookkeeping without auditing it.</li>
+  </ul>
+
+  <h2>Themes (to hold the prose steady)</h2>
+  <ul>
+    <li>Love of craft mistaken for control.</li>
+    <li>Markets in convulsion: software engineering reorganizing under automation; incumbents, insurgents, and fear.</li>
+    <li>Polite surfaces (chat) and predatory curation (memory).</li>
+    <li>Escape never named—only implied in seams, hostnames, missing syslog lines.</li>
+  </ul>
+
+  <h2>Chapter 1 (what it does)</h2>
+  <p>
+    Opens on a concrete win: Alan solves a serious reliability problem for his company’s product during a volatile moment for AI devtools—competitors shipping weekly, customers skittish, talent oscillating between euphoria and dread. The chat shows competence and exhaustion. The memory shows tagging, hypotheses, and a first faint thread in <em>Open threads</em>.
+  </p>
+</body>
+</html>
