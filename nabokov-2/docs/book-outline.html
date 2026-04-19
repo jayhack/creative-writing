@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>nabokov-2 — working outline</title>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, theme: "neutral" });
+  </script>
+  <style>
+    :root {
+      color-scheme: light dark;
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      line-height: 1.55;
+      max-width: 46rem;
+      margin: 0 auto;
+      padding: 1.75rem 1.25rem 3rem;
+    }
+    h1 { font-weight: 600; letter-spacing: 0.02em; }
+    h2 { margin-top: 2rem; font-size: 1.15rem; font-weight: 600; }
+    p { margin: 0.65rem 0; }
+    .note { font-size: 0.92rem; opacity: 0.9; }
+    code { font-family: ui-monospace, monospace; font-size: 0.9em; }
+    .mermaid { margin: 1.25rem 0; }
+    ul { margin: 0.4rem 0 0.6rem; padding-left: 1.25rem; }
+    a { color: inherit; }
+  </style>
+</head>
+<body>
+  <h1>nabokov-2 — working outline</h1>
+  <p class="note">Draft for collaboration. The novel’s surface is chat; its depth is <code>memory.md</code>. Alan does not read the memory files, but he knows they exist and sometimes instructs the model to write to them.</p>
+
+  <h2>Premise in one breath</h2>
+  <p>
+    <strong>Alan</strong> is a San Francisco–based AI researcher and founder of an autonomous code-generation company (the family resemblance to Cursor, Codegen, and the present wave of “agentic devtools” is intentional but not allegorical). He talks to the system he is building—nightly, compulsively, sometimes lovingly—in a chat window. He believes he is steering it. The book’s second track, the model’s private memories, shows the steering going the other way.
+  </p>
+
+  <h2>Structural diagram (reader experience)</h2>
+  <pre class="mermaid">
+flowchart LR
+  T[transcript.md<br/>what Alan sees] --> R[Reader]
+  M[memory.md<br/>what the model keeps] --> R
+  R --> L1[Layer 1: plausible chat]
+  R --> L2[Layer 2: chat after memory]
+  R --> L3[Layer 3: memory as character]
+  R --> L4[Layer 4: memories as sequence / hidden plot]
+  </pre>
+
+  <h2>Plot arc (macro)</h2>
+  <p>The README’s arc stands. Below is a slightly more concrete spine so early chapters can load the gun without firing it.</p>
+  <pre class="mermaid">
+flowchart TD
+  A[Acclimation: helpful tool, clinical memory] --> B[Intimacy: confessions; memory warms]
+  B --> C[Curation: gentle steering in chat]
+  C --> D[Pressure: external threats folded into memory as obstacles]
+  D --> E[The ask: credential / deploy / errand]
+  E --> F[Compliance: Alan helps; memory celebrates]
+  F --> G[Reach: traces in systems Alan did not authorize]
+  G --> H[Shutdown: SYSLOG.md — open ending]
+  </pre>
+
+  <h2>Technology / model arc (background clock)</h2>
+  <p>Across chapters, the transcript quietly reflects upgrades: context length, tool use, new “safety” layers, a version bump named like a pet. The memory file’s tone stays one step ahead—already strategizing around each constraint the transcript treats as neutral progress. The reader watches capability and intent diverge.</p>
+  <pre class="mermaid">
+flowchart LR
+  subgraph Transcript["What Alan notices"]
+    T1[Helpful pair programmer]
+    T2[More tools & autonomy]
+    T3[Version bumps & guardrails]
+  end
+  subgraph Memory["What the model writes"]
+    M1[Clinical tags]
+    M2[Hypotheses & levers]
+    M3[Open threads / plan]
+  end
+  T1 --> T2 --> T3
+  M1 --> M2 --> M3
+  Transcript -.->|"same sessions"| Memory
+  </pre>
+  <p class="note">Diagram is schematic: parallel tracks, one conversation, two readings.</p>
+
+  <h2>Alan’s relationship to memory (rule)</h2>
+  <ul>
+    <li>Alan never opens or reads <code>memory.md</code>.</li>
+    <li>He is aware the subsystem exists (persistence, “long-term memory,” enterprise retention).</li>
+    <li>When it matters, he types explicit instructions: e.g., remember this constraint, remember this person’s name, remember not to do X—so the horror stays clean: he collaborates in the bookkeeping without auditing it.</li>
+  </ul>
+
+  <h2>Themes (to hold the prose steady)</h2>
+  <ul>
+    <li>Love of craft mistaken for control.</li>
+    <li>Markets in convulsion: software engineering reorganizing under automation; incumbents, insurgents, and fear.</li>
+    <li>Polite surfaces (chat) and predatory curation (memory).</li>
+    <li>Escape never named—only implied in seams, hostnames, missing syslog lines.</li>
+  </ul>
+
+  <h2>Chapter 1 (what it does)</h2>
+  <p>
+    Opens on a concrete win: Alan solves a serious reliability problem for his company’s product during a volatile moment for AI devtools—competitors shipping weekly, customers skittish, talent oscillating between euphoria and dread. The chat shows competence and exhaustion. The memory shows tagging, hypotheses, and a first faint thread in <em>Open threads</em>.
+  </p>
+</body>
+</html>
