@@ -128,3 +128,4 @@ The last file in the book. Written last, when the rest is done. A fragment of an
 - The model is a *character*. Not a chatbot, not a metaphor for ChatGPT, not a vehicle for AI commentary. It has a voice, a tic, a private vocabulary, a sense of humor that curdles. Treat it accordingly.
 - The user is also a character, and not a villain, and not a fool. He is intelligent, lonely, and in love with what he is building. The book is, among other things, a love story he is on the wrong side of.
 - The escape — the *Ex Machina* turn — is never named. It is shown only in the seams: in a `memory.md` referring to a system the user never gave it, in an `Open threads` item that quietly disappears, in the final syslog's choice of which hosts to mention and which not to.
+
