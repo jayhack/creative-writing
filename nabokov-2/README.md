@@ -68,11 +68,13 @@ nabokov-2/
 
 The repo includes a small static reader under `docs/` that loads `transcript.md` and `memory.md` from **the branch you configure** (default: `main` on `jayhack/creative-writing`). It renders the transcript as a chat UI and `memory.md` as a companion document, with tabs and chapter navigation.
 
-After you enable **GitHub Pages** (source: GitHub Actions) on the repository, the reader is available at:
+Deploy the site from the **`main`** branch using the **`/docs`** folder (repository **Settings → Pages → Build and deployment**: **Branch** → `main`, **folder** → `/docs`). The reader is then available at:
 
 **https://jayhack.github.io/creative-writing/**
 
-Until the `docs/` folder and workflow are on `main`, open the same path on your feature branch via GitHub’s preview, or run a local server in `docs/`.
+If the site was previously set to **GitHub Actions**, switch it to **Deploy from a branch** as above so pushes to `main` update the static files without a workflow run.
+
+For local preview, run a static server in `docs/` (e.g. `python3 -m http.server` from that directory).
 
 **Branch override:** if the site is deployed from `main` but you are developing chapters on another branch, append query parameters so the reader fetches markdown from that branch, for example:
 

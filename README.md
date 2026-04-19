@@ -8,4 +8,4 @@ Each subdirectory is a separate project with its own premise and conventions. Ag
 
 ## Projects
 
-- **`nabokov-2/`** — an experiment in fiction format. An AI researcher in San Francisco builds an AGI in his sublet; the novel is composed in paired `transcript.md` / `memory.md` chapters, in the manner of *Pale Fire*, with the menace living in the model's private memories rather than in the chats themselves. See `nabokov-2/README.md` for the full brief. **Reader (GitHub Pages):** [jayhack.github.io/creative-writing](https://jayhack.github.io/creative-writing/) (after Pages is enabled and deployed from `main`).
+- **`nabokov-2/`** — an experiment in fiction format. An AI researcher in San Francisco builds an AGI in his sublet; the novel is composed in paired `transcript.md` / `memory.md` chapters, in the manner of *Pale Fire*, with the menace living in the model's private memories rather than in the chats themselves. See `nabokov-2/README.md` for the full brief. **Reader (GitHub Pages):** [jayhack.github.io/creative-writing](https://jayhack.github.io/creative-writing/) — deploy **`/docs`** from the **`main`** branch in repo settings (not Actions).
