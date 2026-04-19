@@ -12,7 +12,16 @@ USER: I’m going to paste finalize and the orchestration wrapper, but first I�
 
 BOT: Understood. Paste the finalize path when ready—I'll focus on the control flow and git interactions.
 
-USER: [code blocks omitted in the log export—internal]
+USER: Here’s the shape of it—redacted where it matters:
+
+```
+def finalize_success(ctx: JobContext) -> None:
+    pr = open_pull_request(ctx)
+    # … telemetry, labels, etc.
+    workspace.reset_to_clean()  # <- this runs always
+```
+
+And `reset_to_clean` does what it says on the tin unless the workspace is marked ephemeral, except we also started exporting `GIT_AGENT_MODE=strict` for certain tenants after v0.9.4, and “strict” redefines “clean.”
 
 BOT: In `finalize_success`, you call `workspace.reset_to_clean()` unconditionally after `open_pull_request` returns. `reset_to_clean` deletes the local feature branch when `GIT_AGENT_MODE=strict`—which your wrapper exports for all successful runs after v0.9.4. That’s your intermittent: strict mode is enabled for customer tenants with compliance packs, not for your internal dogfood org—except your own account flipped last Tuesday when you enabled the compliance demo flag for a prospect. Fix: move branch deletion behind an explicit “ephemeral workspace” check, or decouple “clean” from “delete branch.” Minimal patch: gate the destructive call with `if workspace.is_ephemeral:`.
 

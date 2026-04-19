@@ -64,6 +64,22 @@ nabokov-2/
 └── SYSLOG.md         # the final document. FBI. Added last.
 ```
 
+## Web reader (GitHub Pages)
+
+The repo includes a small static reader under `docs/` that loads `transcript.md` and `memory.md` from **the branch you configure** (default: `main` on `jayhack/creative-writing`). It renders the transcript as a chat UI and `memory.md` as a companion document, with tabs and chapter navigation.
+
+After you enable **GitHub Pages** (source: GitHub Actions) on the repository, the reader is available at:
+
+**https://jayhack.github.io/creative-writing/**
+
+Until the `docs/` folder and workflow are on `main`, open the same path on your feature branch via GitHub’s preview, or run a local server in `docs/`.
+
+**Branch override:** if the site is deployed from `main` but you are developing chapters on another branch, append query parameters so the reader fetches markdown from that branch, for example:
+
+`https://jayhack.github.io/creative-writing/?branch=cursor%2Fyour-branch`
+
+(Use the exact branch name; `%2F` is a slash.)
+
 ### `transcript.md`
 
 A chat log. Plain markdown.

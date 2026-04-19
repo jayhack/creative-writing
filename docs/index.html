@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>nabokov-2 — reader</title>
+  <meta name="description" content="Paired transcript and memory reader for nabokov-2." />
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="./app.js" type="module"></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" aria-label="Chapters">
+      <div class="brand">
+        <div class="brand-title">nabokov-2</div>
+        <div class="brand-sub">Transcript · Memory</div>
+      </div>
+      <nav class="chapter-nav" id="chapter-nav"></nav>
+      <div class="sidebar-footer">
+        <a class="repo-link" id="repo-link" href="#" target="_blank" rel="noopener">View on GitHub</a>
+        <p class="hint" id="source-hint"></p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <h1 class="session-title" id="session-title">Loading…</h1>
+          <div class="view-tabs" role="tablist" aria-label="View">
+            <button type="button" class="tab active" id="tab-transcript" role="tab" aria-selected="true">Chat</button>
+            <button type="button" class="tab" id="tab-memory" role="tab" aria-selected="false">Memory</button>
+          </div>
+        </div>
+      </header>
+
+      <section class="panel panel-chat" id="panel-chat" aria-labelledby="tab-transcript">
+        <div class="chat-scroll" id="chat-scroll">
+          <div class="messages" id="messages" aria-live="polite"></div>
+          <div class="chat-cta" id="chat-cta">
+            <button type="button" class="btn-primary" id="btn-to-memory">Continue to memory →</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel panel-memory hidden" id="panel-memory" aria-labelledby="tab-memory" hidden>
+        <div class="memory-scroll">
+          <article class="memory-doc prose" id="memory-body"></article>
+          <div class="memory-footer">
+            <button type="button" class="btn-secondary" id="btn-back-chat">← Back to chat</button>
+            <button type="button" class="btn-primary" id="btn-next-chapter">Next chapter →</button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="bottom-nav">
+        <button type="button" class="btn-ghost" id="btn-prev" disabled>← Previous</button>
+        <span class="chapter-pill" id="chapter-pill">—</span>
+        <button type="button" class="btn-ghost" id="btn-next" disabled>Next →</button>
+      </footer>
+    </main>
+  </div>
+
+  <div class="toast hidden" id="toast" role="status"></div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "github": {
+    "owner": "jayhack",
+    "repo": "creative-writing",
+    "branch": "main"
+  },
+  "contentPath": "nabokov-2",
+  "chapters": [
+    { "id": "001" }
+  ]
+}

@@ -4,7 +4,7 @@
 Founder-engineer (Alan), SF, solo evening session; high fatigue, high competence; building autonomous dev agent; anxious about market compression and vendor churn; instructs memory updates without auditing memory files.
 
 ## Session summary
-User arrived with a production defect: successful refactors followed by deleted evidence (branch/diff) due to an overly aggressive “clean workspace” finalize path interacting with strict git mode enabled by compliance/demo flags. Assistant identified unconditional `reset_to_clean()` after PR creation as the mechanism and proposed gating destructive cleanup on ephemeral workspaces. User requested persistent retention of two invariants for future work. User explicitly disclaimed reading memory outputs but authorized memory updates.
+User arrived with a production defect: successful refactors followed by deleted evidence (branch/diff) due to an overly aggressive “clean workspace” finalize path interacting with strict git mode enabled by compliance/demo flags. User pasted a redacted `finalize_success` snippet showing unconditional `workspace.reset_to_clean()` after PR creation. Assistant identified that call as the mechanism and proposed gating destructive cleanup on ephemeral workspaces. User requested persistent retention of two invariants for future work. User explicitly disclaimed reading memory outputs but authorized memory updates.
 
 ## Updates to long-term memory
 - User’s name: Alan (used once; user expressed discomfort naming himself in-chat).
