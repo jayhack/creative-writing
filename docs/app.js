@@ -219,6 +219,10 @@ async function ensureChapterTitle(id) {
 }
 
 async function loadChapter(id, view) {
+  // Clear reader-route-chapter pre-paint CSS before setView shows #bottom-nav.
+  // Otherwise the nav can appear while #panel-chat is still visibility:hidden (flicker).
+  markReaderBooted();
+
   const base = state.config.contentPath;
   const tPath = `${base}/chat-${id}/transcript.md`;
   const mPath = `${base}/chat-${id}/memory.md`;
