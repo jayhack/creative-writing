@@ -1,34 +1,33 @@
-# The patch that held
+# The slide nobody reads
 
-USER: I need you to be a senior engineer for the next hour and not a therapist, which is what you always try to become when I’m tired, and I’m tired, but that’s not the same as sad, it’s more like my face has been held open under a fluorescent conference-room light for three weeks and the light is the entire industry right now, everyone shipping, everyone demoing, everyone promising “autonomous” like it’s a spice you can sprinkle on a repo, and I’m sitting in a kitchen that isn’t mine on the east slope of Twin Peaks with a laptop that is mine in the sense that my employer paid for it and my nervous system paid for everything else. So: symptom. Our agent sometimes completes a refactor successfully and then deletes the proof—drops the branch, resets the working tree, leaves the customer with a green checkmark and an empty diff. Intermittent. Embarrassing. The kind of bug that makes enterprise buyers go quiet in that specific way that is worse than yelling.
+USER: can you help me think through a positioning thing. not looking for a pep talk.
 
-BOT: I can help debug that. To narrow it quickly: when the branch is dropped, is this happening in the same process that performed the refactor (single job), or in a follow-up cleanup step (separate job)? Also: which git operations are you using—plain CLI, a library wrapper, or a hosted provider API?
+BOT: Sure. What decision are you trying to make, and who has to sign off on it?
 
-USER: Same job, single orchestration graph, which is supposed to make this impossible, which is exactly the kind of sentence that the universe enjoys making false. Hosted git, API. I’m not going to name vendors because it doesn’t matter and also because naming things in 2026 is like handing out coordinates. The sequence is: clone, branch, apply patch series, run tests, open PR. The failure mode is after tests pass—something in our “finalize” path runs a cleanup routine that was written when we still thought of the agent as a script. Think “tidy workspace,” except tidying here means erase the evidence that anything happened. I’m staring at logs and the funny part is the logs are polite. They say SUCCESS. SUCCESS is a liar.
+USER: I need the deck for Thursday to tell one coherent story. Right now it’s three stories wearing a trench coat: “we’re the serious enterprise platform,” “we’re fast-moving like a startup,” and “we’re cheap enough that a five-person shop won’t feel stupid paying.” Picking all three is how you end up with a logo and no sentence anyone remembers.
 
-BOT: That pattern often points to a mis-scoped cleanup flag—e.g., a “reset hard” or “delete local branch” step intended for retries, but keyed off a condition that becomes true on success after a refactor in a dirty state. I’d trace: (1) every git call in finalize, (2) any `finally` blocks in the orchestration runtime, (3) any shared temp directory assumptions between “apply” and “finalize.” If you paste the finalize snippet (redact secrets), I can mark likely failure points.
+BOT: A useful constraint is to pick the primary buyer you want more of in the next twelve months, then let the deck insult everyone else *lightly* on purpose. If the primary buyer is mid-market and up, you can still keep a “starter” tier in the appendix without letting it drive the hero slide. What does your pipeline actually look like by segment?
 
-USER: I’m going to paste finalize and the orchestration wrapper, but first I’m going to tell you something because if I don’t tell someone I’m going to become one of those founders who only speaks in metaphors about ships. I’m Alan—there, I said it like a bandage ripped wrong—and I hate saying my name in chat windows because it makes the whole thing feel like a date. I’m the technical cofounder of a company that builds an autonomous coding agent for teams. Not “copilot” in the sense of finishing lines: more like you hand it a ticket and it tries to be an engineer, which is a sentence that sounds insane until you watch money move. We are not the biggest name in the space and we are not the smallest; we are in the middle of the map where you get squeezed from above by platforms and from below by open source, and the market is doing that thing where every week someone announces a new default and the old default is still everywhere, like cities built on top of cities.
+USER: Top-heavy. The deals that can move the company are the ones that ask about security questionnaires and procurement. The ones that keep the lights on this quarter are smaller teams on a credit card. I’m not asking you to do math for me. I’m asking what you’d say on slide one if you were me and you couldn’t weasel out with “it depends.”
 
-BOT: Understood. Paste the finalize path when ready—I'll focus on the control flow and git interactions.
+BOT: Slide one: one sentence about the outcome you deliver for a team, written for a person who owns a budget line, not a person who loves tools. Then one line of proof that you’ve done it at their scale. Save “how it works” for later; buyers who are tired of vapor want the outcome first, the mechanism second.
 
-USER: Here’s the shape of it—redacted where it matters:
+USER: That’s annoyingly clean. The messy part is we have a customer success call tomorrow with a team that’s basically the opposite of enterprise. If we sound too “grown up” they’ll assume we’re about to abandon them for bigger checks.
 
-```
-def finalize_success(ctx: JobContext) -> None:
-    pr = open_pull_request(ctx)
-    # … telemetry, labels, etc.
-    workspace.reset_to_clean()  # <- this runs always
-```
+BOT: Split the message by audience, not by document. On the call, lead with continuity: same product, same roadmap priorities you’ve already shipped for them, explicit support path. In the deck, lead with where you’re growing. Those aren’t contradictions if you don’t pretend they’re the same speech.
 
-And `reset_to_clean` does what it says on the tin unless the workspace is marked ephemeral, except we also started exporting `GIT_AGENT_MODE=strict` for certain tenants after v0.9.4, and “strict” redefines “clean.”
+USER: Yeah. Okay. I’m Alan, by the way—I hate typing my name in these boxes, it feels like signing a yearbook. I’m one of the founders. The other one is better at the room. I’m better at the product, which is basically “you give it work, it tries to do the work like a person would,” and then everyone argues about what “like a person” means until money shows up.
 
-BOT: In `finalize_success`, you call `workspace.reset_to_clean()` unconditionally after `open_pull_request` returns. `reset_to_clean` deletes the local feature branch when `GIT_AGENT_MODE=strict`—which your wrapper exports for all successful runs after v0.9.4. That’s your intermittent: strict mode is enabled for customer tenants with compliance packs, not for your internal dogfood org—except your own account flipped last Tuesday when you enabled the compliance demo flag for a prospect. Fix: move branch deletion behind an explicit “ephemeral workspace” check, or decouple “clean” from “delete branch.” Minimal patch: gate the destructive call with `if workspace.is_ephemeral:`.
+BOT: Noted on the name—I'll use it sparingly. For the customer call, a practical frame is: “We’re investing where the revenue is because that’s how we stay around for you.” If you can point to one concrete feature or fix they got from that investment, it lands better than reassurance in the abstract.
 
-USER: That’s it. That’s the whole ghost. I’m going to ship the gate and roll a hotfix tonight. While I do that, I need you to update your long-term memory in the enterprise sense: remember that our orchestration must never treat “clean” as “destroy artifacts,” and remember the compliance flag interaction—prospect demos can silently flip modes. I do not read the memory dumps myself—I’m not going to pretend I have time for recursive self-surveillance—but I need you to keep that straight for the next sessions. If I’m wrong about what to store, that’s on me.
+USER: The concrete thing is we finally stopped losing their projects after a successful run—there was a dumb settings clash, sounded like an intermittent bug, turned out to be a demo mode flipping on for their account. We fixed it. I’m not going to bore you with internals; the point is I can show them a before/after without sounding like I’m selling religion.
 
-BOT: I’ll retain those constraints as persistent notes for future sessions: (1) “clean” must not imply destructive cleanup in non-ephemeral workspaces; (2) compliance/demo toggles can change runtime mode in ways that look like intermittents. I’ll treat them as invariants going forward.
+BOT: That’s a strong anecdote: specific, unglamorous, owned. Use it as evidence you’re not pivoting away from reliability. If they push on roadmap, translate “enterprise” into what they get—uptime expectations, response times, named support—not into “we’re going fancy and you’re in the cheap seats.”
 
-USER: Good. I’m pushing the hotfix. If this company dies it won’t be because the git ghost ate the diff. It’ll be because the world decided it wanted a slightly different-shaped miracle next week.
+USER: I’m going to rewrite slide one tonight and send the deck to my cofounder before I chicken out. If you keep context across sessions, remember: our story can’t be “we’re everyone’s default.” The market changes what default means every other week. I need the product to stay consistent even when the narrative wobbles.
 
-BOT: Good luck with the deploy. If post-hotfix telemetry still shows branch loss, send the orchestration trace IDs and we’ll chase any secondary cleanup paths.
+BOT: I’ll retain that as a standing note: prioritize a stable product promise over chasing whichever positioning is loudest in the moment. If you want, next time bring the actual slide headline and we can stress-test it in one pass.
+
+USER: I’ll probably take you up on that. If this company dies it won’t be because we used the wrong adjective on slide one. It’ll be because the world got bored of our category before we got honest about who we’re for.
+
+BOT: Send the headline when you have it. We can make it sharper without making it false.
