@@ -1,5 +1,5 @@
 /**
- * nabokov-2 reader — loads markdown from the repo via raw.githubusercontent.com
+ * Memory.md reader — loads markdown from the repo via raw.githubusercontent.com
  * Hash routes: #/001/chat | #/001/memory
  * Query overrides: ?branch=main&owner=jayhack&repo=creative-writing
  */
@@ -206,8 +206,13 @@ async function loadManifest() {
     repo: q.repo || manifest.github.repo,
     branch: q.branch || manifest.github.branch,
   };
+  if (!manifest.title) manifest.title = "Memory.md";
   state.config = manifest;
   state.chaptersMeta = manifest.chapters || [];
+}
+
+function projectTitle() {
+  return state.config?.title || "Memory.md";
 }
 
 async function ensureChapterTitle(id) {
@@ -226,7 +231,8 @@ async function loadChapter(id, view) {
 
   const [tMd, mMd] = await Promise.all([fetchText(tPath), fetchText(mPath)]);
   const parsed = parseTranscript(tMd);
-  document.title = parsed.title ? `${parsed.title} — nabokov-2` : `Chapter ${id} — nabokov-2`;
+  const pt = projectTitle();
+  document.title = parsed.title ? `${parsed.title} — ${pt}` : `Chapter ${id} — ${pt}`;
   renderChat(parsed.turns);
 
   const memHtml = marked.parse(mMd, { headerIds: false });
@@ -351,11 +357,12 @@ async function route() {
   try {
     if (!state.config) await loadManifest();
     const gh = state.config.github;
-    $("repo-link").href = `https://github.com/${gh.owner}/${gh.repo}/tree/${gh.branch}/nabokov-2`;
+    $("repo-link").href = `https://github.com/${gh.owner}/${gh.repo}/tree/${gh.branch}/${state.config.contentPath}`;
     $("source-hint").textContent = `${gh.owner}/${gh.repo}@${gh.branch}`;
 
     const h = parseHash();
     if (h.intro) {
+      document.title = projectTitle();
       showIntro();
       return;
     }
@@ -379,7 +386,7 @@ async function boot() {
   } catch (e) {
     console.error(e);
     showToast(e.message || String(e), true);
-    document.title = "nabokov-2 — error";
+    document.title = `${projectTitle()} — error`;
     markReaderBooted();
   }
 }

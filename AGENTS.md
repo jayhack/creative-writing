@@ -8,12 +8,12 @@ Operating manual for LLM agents working in this repo. Read this before you chang
 .
 ├── README.md                 # one-paragraph description of the workshop
 ├── AGENTS.md                 # this file
-├── nabokov-2/                # the active short story project
-│   ├── README.md             # the binding brief; READ FIRST for nabokov-2
+├── nabokov-2/                # Memory.md — the active short story project
+│   ├── README.md             # the binding brief; READ FIRST for Memory.md
 │   ├── chat-NNN/
 │   │   ├── transcript.md     # the visible chat
 │   │   └── memory.md         # the model's private memory write
-│   ├── docs/                 # planning artifacts for nabokov-2 (HTML outline, mermaid sources/SVGs)
+│   ├── docs/                 # planning artifacts for Memory.md (HTML outline, mermaid sources/SVGs)
 │   └── SYSLOG.md             # written last
 └── docs/                     # the GitHub Pages reader (do not confuse with nabokov-2/docs/)
     ├── index.html
@@ -27,7 +27,7 @@ Operating manual for LLM agents working in this repo. Read this before you chang
 
 ## Where to write fiction
 
-All chapter content for nabokov-2 lives in `nabokov-2/chat-NNN/`. The conventions are normative and live in `nabokov-2/README.md` — re-read it before drafting a new chapter. Voice and prose-style guidance (when it exists) lives in `nabokov-2/STYLE.md`; consult that, not Nabokov’s or Wallace’s bibliography. Especially:
+All chapter content for Memory.md lives in `nabokov-2/chat-NNN/`. The conventions are normative and live in `nabokov-2/README.md` — re-read it before drafting a new chapter. Voice and prose-style guidance (when it exists) lives in `nabokov-2/STYLE.md`; consult that, not Nabokov’s or Wallace’s bibliography. Especially:
 
 - A chapter is the **pair**: never write `transcript.md` without the matching `memory.md`.
 - Read the previous two or three pairs first; continuity lives in the memories.
