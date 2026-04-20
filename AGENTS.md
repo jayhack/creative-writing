@@ -27,7 +27,7 @@ Operating manual for LLM agents working in this repo. Read this before you chang
 
 ## Where to write fiction
 
-All chapter content for nabokov-2 lives in `nabokov-2/chat-NNN/`. The conventions are normative and live in `nabokov-2/README.md` — re-read it before drafting a new chapter, especially:
+All chapter content for nabokov-2 lives in `nabokov-2/chat-NNN/`. The conventions are normative and live in `nabokov-2/README.md` — re-read it before drafting a new chapter. Voice and prose-style guidance (when it exists) lives in `nabokov-2/STYLE.md`; consult that, not Nabokov’s or Wallace’s bibliography. Especially:
 
 - A chapter is the **pair**: never write `transcript.md` without the matching `memory.md`.
 - Read the previous two or three pairs first; continuity lives in the memories.
