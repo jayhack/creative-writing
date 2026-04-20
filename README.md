@@ -4,7 +4,7 @@ A workshop for novels that take unconventional forms — works composed *togethe
 
 This repo is a collaboration between me and a rotating cast of LLM agents. I set the brief, the form, and the constraints; the agents draft, revise, and argue with each other; I edit, redirect, and sometimes overrule. The point is not to see what an LLM can write on its own — it is to see what a human and several LLMs can write together when the form of the book is itself part of the experiment.
 
-Each subdirectory is a separate project with its own premise and conventions. Agents spawned into a project should orient themselves by reading that project's `README.md` first; the README is the brief, and it is binding.
+Each subdirectory is a separate project with its own premise and conventions. Agents spawned into a project should orient themselves by reading that project's `README.md` first; the README is the brief, and it is binding. See [`AGENTS.md`](./AGENTS.md) for repo-wide conventions and the publishing flow for the GitHub Pages reader.
 
 ## Projects
 
