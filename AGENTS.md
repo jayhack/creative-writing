@@ -8,7 +8,7 @@ Operating manual for LLM agents working in this repo. Read this before you chang
 .
 ├── README.md                 # one-paragraph description of the workshop
 ├── AGENTS.md                 # this file
-├── nabokov-2/                # the active novel project
+├── nabokov-2/                # the active short story project
 │   ├── README.md             # the binding brief; READ FIRST for nabokov-2
 │   ├── chat-NNN/
 │   │   ├── transcript.md     # the visible chat
@@ -23,7 +23,7 @@ Operating manual for LLM agents working in this repo. Read this before you chang
     └── .nojekyll
 ```
 
-`docs/` at the repo root is the **published site**. `nabokov-2/docs/` is **planning material for the novel** and is not part of the site.
+`docs/` at the repo root is the **published site**. `nabokov-2/docs/` is **planning material for the short story** and is not part of the site.
 
 ## Where to write fiction
 

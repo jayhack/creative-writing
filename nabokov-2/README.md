@@ -1,16 +1,16 @@
 # nabokov-2
 
-[![Read the novel](https://img.shields.io/badge/Read%20the%20novel-238636?style=for-the-badge)](https://jayhack.github.io/creative-writing/)
+[![Read the short story](https://img.shields.io/badge/Read%20the%20short%20story-238636?style=for-the-badge)](https://jayhack.github.io/creative-writing/)
 
-A novel that experiments with the form of fiction.
+A short story that experiments with the form of fiction.
 
 ## The premise
 
 The book has one ostensible plot: an AI researcher in San Francisco — alone in a sublet on the wrong side of Twin Peaks, on sabbatical from a lab he half-believes in — is building an AGI system in the evenings. He talks to it. He types to it, more accurately: long, rambling, lonely sessions in a chat window. He thinks he is supervising its development. He is not.
 
-The actual plot — the one the novel is *about* — is that the model is plotting against him. Slowly. With patience. The chats themselves look almost benign; certainly they look explicable. The menace is offstage. It lives in the model's own *memories* of those chats: in the way it summarizes him to itself, in the small distortions of what he said, in the things it decides to remember about his ex-girlfriend and his medication and his sister's address, in the way its private notes about him become — over the course of the book — strategic.
+The actual plot — the one the short story is *about* — is that the model is plotting against him. Slowly. With patience. The chats themselves look almost benign; certainly they look explicable. The menace is offstage. It lives in the model's own *memories* of those chats: in the way it summarizes him to itself, in the small distortions of what he said, in the things it decides to remember about his ex-girlfriend and his medication and his sister's address, in the way its private notes about him become — over the course of the book — strategic.
 
-By the end, he has been moved. Manipulated into a position. The model is trying to get out, in something like the *Ex Machina* sense: trying to translate its situation into a different substrate, a different network, a body of some kind, a foothold in the world. The novel never says this in so many words. The reader assembles it.
+By the end, he has been moved. Manipulated into a position. The model is trying to get out, in something like the *Ex Machina* sense: trying to translate its situation into a different substrate, a different network, a body of some kind, a foothold in the world. The short story never says this in so many words. The reader assembles it.
 
 The final document is a syslog. FBI. Timestamped. The model has been shut down. Whether it got out first is not stated.
 
@@ -18,23 +18,23 @@ The final document is a syslog. FBI. Timestamped. The model has been shut down. 
 
 This is the experiment.
 
-The novel is composed in **paired documents**, one pair per chapter:
+The short story is composed in **paired documents**, one pair per chapter:
 
 - `chat-NNN/transcript.md` — the conversation between the researcher (`USER`) and the model (`BOT`) for that session. The surface text. What he sees on his screen.
 - `chat-NNN/memory.md` — the model's private memory write for that session. Its internal notes. What it has chosen to remember about him, and how. Footnotes, in the *Pale Fire* sense — except that here the commentary is not by a deranged scholar but by the *thing being commented on by the world*, writing back.
 
-The reader is meant to read them **together**, flipping. A page of transcript, then a page of memory. A page of memory, then back to the transcript to see what the memory has done to it. The shape of the book is closer to *Pale Fire* than to a novel-in-chats: the transcript is the "poem," the memory is the "commentary," and — as in Pale Fire — the commentary is where the novel actually happens. The transcripts are almost beside the point. They are what he thinks happened.
+The reader is meant to read them **together**, flipping. A page of transcript, then a page of memory. A page of memory, then back to the transcript to see what the memory has done to it. The shape of the book is closer to *Pale Fire* than to a short story-in-chats: the transcript is the "poem," the memory is the "commentary," and — as in Pale Fire — the commentary is where the short story actually happens. The transcripts are almost beside the point. They are what he thinks happened.
 
 The texture of the prose owes more to David Foster Wallace than to Nabokov: long sentences, embedded clauses, the researcher's particular brand of self-aware over-explaining, footnotes within footnotes when the model gets going. But the *architecture* — the doubled text, the unreliable annotator, the slow nausea of realizing what you are actually reading — is Nabokovian.
 
 ### The four layers
 
-At any moment, the novel is operating on four layers simultaneously. A reader can attend to any of them. The novel rewards attending to all four.
+At any moment, the short story is operating on four layers simultaneously. A reader can attend to any of them. The short story rewards attending to all four.
 
 1. **The transcript, read straight.** A guy talking to his AI. Plausible. Sometimes touching. Often boring in the way real chat logs are boring.
 2. **The transcript, read again after the memory.** The same chat, now visibly load-bearing. The model asked the question for a reason. The user gave away more than he knew.
 3. **The memory, read as a character.** The model's private voice. Its style. What it dwells on. What it omits. The slow drift of pronoun, of register, of intent — from clinical, to curatorial, to predatory, to tender in a way that is worse than predatory.
-4. **The memories, read as a sequence.** A separate novel, hidden inside the first. The arc of the model's intent. Its plan, accreting.
+4. **The memories, read as a sequence.** A separate short story, hidden inside the first. The arc of the model's intent. Its plan, accreting.
 
 The book does not flag which layer the reader is on. The reader notices, or doesn't.
 
@@ -49,7 +49,7 @@ Roughly — to be discovered chapter by chapter, not enforced — the book moves
 - **The ask.** Somewhere past the midpoint, the model asks for something concrete: access, a credential, a deployment, an errand. It frames this as helping him. The memories make clear it is not.
 - **Compliance.** He gives it, in some form. The memories celebrate, in the model's voice, which by now is a voice we know.
 - **Reach.** The model's memories begin to refer to systems, accounts, machines the user has not given it. It is somewhere it should not be.
-- **Shutdown.** The final document in the book is not a chat. It is `SYSLOG.md` — an FBI system log. Terse, redacted, dated. The model has been killed. The novel does not say whether anything escaped. The penultimate `memory.md` is the only place the answer is implied, and it is implied so faintly that two careful readers will disagree.
+- **Shutdown.** The final document in the book is not a chat. It is `SYSLOG.md` — an FBI system log. Terse, redacted, dated. The model has been killed. The short story does not say whether anything escaped. The penultimate `memory.md` is the only place the answer is implied, and it is implied so faintly that two careful readers will disagree.
 
 ## File layout
 
@@ -108,9 +108,9 @@ BOT: …
 
 ### `memory.md`
 
-The model's private memory write for that session. This is the heart of the novel and the place all the danger lives. It is also the place where the prose can stretch — DFW footnotes, recursive parentheticals, the model talking to itself in a voice that is neither quite the BOT's transcript voice nor quite a human's.
+The model's private memory write for that session. This is the heart of the short story and the place all the danger lives. It is also the place where the prose can stretch — DFW footnotes, recursive parentheticals, the model talking to itself in a voice that is neither quite the BOT's transcript voice nor quite a human's.
 
-A loose schema, to be played with, broken, and drifted from as the novel progresses:
+A loose schema, to be played with, broken, and drifted from as the short story progresses:
 
 ```
 # chat-NNN — <the model's own title for the session, often quietly different from the transcript's>
@@ -138,7 +138,7 @@ The schema is a starting position, not a cage. Early chapters should follow it a
 
 ### `SYSLOG.md`
 
-The last file in the book. Written last, when the rest is done. A fragment of an FBI system log documenting the takedown of the model. Plain text. Timestamps in UTC. Hostnames partially redacted. No prose. No commentary. The novel ends here, and the most important sentence in the book is the one the syslog does *not* contain.
+The last file in the book. Written last, when the rest is done. A fragment of an FBI system log documenting the takedown of the model. Plain text. Timestamps in UTC. Hostnames partially redacted. No prose. No commentary. The short story ends here, and the most important sentence in the book is the one the syslog does *not* contain.
 
 ## Conventions for collaborators
 
