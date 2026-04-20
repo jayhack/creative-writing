@@ -1,5 +1,7 @@
 # nabokov-2
 
+**Inherited from *Pale Fire* and *Infinite Jest*:** Nabokov for the architecture (primary text plus commentary, unreliable annotator, the real story in the margins) and Wallace for the permission to let a mind sprawl on the page when sprawl is the point. This is precedent, not pastiche — the fuller framing is under **The form** below.
+
 [![Read the short story](https://img.shields.io/badge/Read%20the%20short%20story-238636?style=for-the-badge)](https://jayhack.github.io/creative-writing/)
 
 A short story that experiments with the form of fiction.
