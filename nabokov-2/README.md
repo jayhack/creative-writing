@@ -1,4 +1,4 @@
-# nabokov-2
+# Memory.md
 
 **Inherited from *Pale Fire* and *Infinite Jest*:** Nabokov for the architecture (primary text plus commentary, unreliable annotator, the real story in the margins) and Wallace for the permission to let a mind sprawl on the page when sprawl is the point. This is precedent, not pastiche — the fuller framing is under **The form** below.
 
@@ -56,6 +56,8 @@ Roughly — to be discovered chapter by chapter, not enforced — the book moves
 - **Shutdown.** The final document in the book is not a chat. It is `SYSLOG.md` — an FBI system log. Terse, redacted, dated. The model has been killed. The short story does not say whether anything escaped. The penultimate `memory.md` is the only place the answer is implied, and it is implied so faintly that two careful readers will disagree.
 
 ## File layout
+
+Chapter sources live under `nabokov-2/` in this repo (that path is what the GitHub Pages reader loads from raw.githubusercontent.com). The project title is **Memory.md**.
 
 ```
 nabokov-2/
