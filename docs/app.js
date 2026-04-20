@@ -161,6 +161,14 @@ function showIntro() {
   setTimeout(() => $("btn-begin")?.focus(), 0);
 }
 
+/** Hide intro / prior chapter immediately before async fetch (avoids intro flash on navigation). */
+function prepareChapterShell(view) {
+  markReaderBooted();
+  setView(view === "memory" ? "memory" : "chat");
+  $("messages").innerHTML = "";
+  $("memory-body").innerHTML = "";
+}
+
 function parseHash() {
   const h = window.location.hash.replace(/^#\/?/, "");
   const parts = h.split("/").filter(Boolean);
@@ -238,8 +246,6 @@ async function loadChapter(id, view) {
   const memHtml = marked.parse(mMd, { headerIds: false });
   $("memory-body").innerHTML = memHtml;
 
-  // Pre-paint CSS keeps chat hidden until booted; clear it only after content is in the DOM,
-  // immediately before setView — otherwise the bottom nav can show over a blank main (flicker).
   markReaderBooted();
   setView(view === "memory" ? "memory" : "chat");
 
@@ -370,6 +376,7 @@ async function route() {
       showToast(`Unknown chapter ${h.id}`, true);
       return;
     }
+    prepareChapterShell(h.view);
     await loadChapter(h.id, h.view);
   } finally {
     markReaderBooted();
