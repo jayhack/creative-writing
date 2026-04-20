@@ -3,63 +3,74 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>nabokov-2 — reader</title>
-  <!-- Pages deploy bump: 2026-04-19 -->
+  <title>nabokov-2</title>
   <meta name="description" content="Paired transcript and memory reader for nabokov-2." />
   <link rel="stylesheet" href="./styles.css" />
   <script src="./app.js" type="module"></script>
 </head>
-<body>
-  <div class="app">
-    <aside class="sidebar" aria-label="Chapters">
-      <div class="brand">
-        <div class="brand-title">nabokov-2</div>
-        <div class="brand-sub">Transcript · Memory</div>
+<body class="sidebar-collapsed">
+  <aside class="sidebar" id="sidebar" aria-label="Chapters" aria-hidden="true">
+    <div class="sidebar-head">
+      <button type="button" class="icon-btn" id="btn-sidebar-close" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round"/></svg>
+      </button>
+      <a class="brand-link" href="#/">nabokov-2</a>
+    </div>
+    <nav class="chapter-nav" id="chapter-nav"></nav>
+    <div class="sidebar-footer">
+      <a class="repo-link" id="repo-link" href="#" target="_blank" rel="noopener">View on GitHub</a>
+      <p class="hint" id="source-hint"></p>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim" hidden></div>
+
+  <main class="main">
+    <header class="topbar minimal" id="topbar">
+      <button type="button" class="icon-btn" id="btn-sidebar-open" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round"/></svg>
+      </button>
+      <div class="view-tabs hidden" id="view-tabs" role="tablist" aria-label="View">
+        <button type="button" class="tab active" id="tab-transcript" role="tab" aria-selected="true">Chat</button>
+        <button type="button" class="tab" id="tab-memory" role="tab" aria-selected="false">Memory</button>
       </div>
-      <nav class="chapter-nav" id="chapter-nav"></nav>
-      <div class="sidebar-footer">
-        <a class="repo-link" id="repo-link" href="#" target="_blank" rel="noopener">View on GitHub</a>
-        <p class="hint" id="source-hint"></p>
+    </header>
+
+    <section class="panel panel-intro" id="panel-intro" hidden>
+      <div class="intro-inner">
+        <div class="intro-eyebrow">a novel in transcripts and memories</div>
+        <h1 class="intro-title">nabokov-2</h1>
+        <p class="intro-lede">An AI researcher in San Francisco, alone in a sublet, talks to the system he is building. He thinks he is supervising it.</p>
+        <p class="intro-lede dim">Each chapter is a paired chat and a private memory. The novel happens between them.</p>
+        <button type="button" class="btn-primary intro-cta" id="btn-begin">Begin</button>
+        <p class="intro-foot">Press <kbd>Enter</kbd> to begin.</p>
       </div>
-    </aside>
+    </section>
 
-    <main class="main">
-      <header class="topbar">
-        <div class="topbar-inner">
-          <h1 class="session-title" id="session-title">Loading…</h1>
-          <div class="view-tabs" role="tablist" aria-label="View">
-            <button type="button" class="tab active" id="tab-transcript" role="tab" aria-selected="true">Chat</button>
-            <button type="button" class="tab" id="tab-memory" role="tab" aria-selected="false">Memory</button>
-          </div>
+    <section class="panel panel-chat" id="panel-chat" aria-labelledby="tab-transcript" hidden>
+      <div class="chat-scroll" id="chat-scroll">
+        <div class="messages" id="messages" aria-live="polite"></div>
+        <div class="chat-cta" id="chat-cta">
+          <button type="button" class="btn-primary" id="btn-to-memory">Continue to memory →</button>
         </div>
-      </header>
+      </div>
+    </section>
 
-      <section class="panel panel-chat" id="panel-chat" aria-labelledby="tab-transcript">
-        <div class="chat-scroll" id="chat-scroll">
-          <div class="messages" id="messages" aria-live="polite"></div>
-          <div class="chat-cta" id="chat-cta">
-            <button type="button" class="btn-primary" id="btn-to-memory">Continue to memory →</button>
-          </div>
+    <section class="panel panel-memory" id="panel-memory" aria-labelledby="tab-memory" hidden>
+      <div class="memory-scroll">
+        <article class="memory-doc prose" id="memory-body"></article>
+        <div class="memory-footer">
+          <button type="button" class="btn-secondary" id="btn-back-chat">← Back to chat</button>
+          <button type="button" class="btn-primary" id="btn-next-chapter">Next chapter →</button>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="panel panel-memory hidden" id="panel-memory" aria-labelledby="tab-memory" hidden>
-        <div class="memory-scroll">
-          <article class="memory-doc prose" id="memory-body"></article>
-          <div class="memory-footer">
-            <button type="button" class="btn-secondary" id="btn-back-chat">← Back to chat</button>
-            <button type="button" class="btn-primary" id="btn-next-chapter">Next chapter →</button>
-          </div>
-        </div>
-      </section>
-
-      <footer class="bottom-nav">
-        <button type="button" class="btn-ghost" id="btn-prev" disabled>← Previous</button>
-        <span class="chapter-pill" id="chapter-pill">—</span>
-        <button type="button" class="btn-ghost" id="btn-next" disabled>Next →</button>
-      </footer>
-    </main>
-  </div>
+    <footer class="bottom-nav" id="bottom-nav" hidden>
+      <button type="button" class="btn-ghost" id="btn-prev" disabled>← Previous</button>
+      <span class="chapter-pill" id="chapter-pill">—</span>
+      <button type="button" class="btn-ghost" id="btn-next" disabled>Next →</button>
+    </footer>
+  </main>
 
   <div class="toast hidden" id="toast" role="status"></div>
 </body>

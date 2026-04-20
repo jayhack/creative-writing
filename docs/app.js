@@ -120,12 +120,25 @@ function showToast(msg, isError) {
   showToast._timer = setTimeout(() => t.classList.add("hidden"), 5200);
 }
 
+function showOnly(panelId) {
+  ["panel-intro", "panel-chat", "panel-memory"].forEach((id) => {
+    const el = $(id);
+    const show = id === panelId;
+    el.toggleAttribute("hidden", !show);
+    el.classList.toggle("hidden", !show);
+  });
+}
+
+function setIntroMode(isIntro) {
+  $("view-tabs").classList.toggle("hidden", isIntro);
+  $("bottom-nav").toggleAttribute("hidden", isIntro);
+  $("bottom-nav").classList.toggle("hidden", isIntro);
+}
+
 function setView(mode) {
   const isMem = mode === "memory";
-  $("panel-chat").classList.toggle("hidden", isMem);
-  $("panel-chat").toggleAttribute("hidden", isMem);
-  $("panel-memory").classList.toggle("hidden", !isMem);
-  $("panel-memory").toggleAttribute("hidden", !isMem);
+  setIntroMode(false);
+  showOnly(isMem ? "panel-memory" : "panel-chat");
   $("tab-transcript").classList.toggle("active", !isMem);
   $("tab-transcript").setAttribute("aria-selected", String(!isMem));
   $("tab-memory").classList.toggle("active", isMem);
@@ -134,19 +147,45 @@ function setView(mode) {
   else $("memory-body").parentElement.scrollTop = 0;
 }
 
+function showIntro() {
+  setIntroMode(true);
+  showOnly("panel-intro");
+  setTimeout(() => $("btn-begin")?.focus(), 0);
+}
+
 function parseHash() {
   const h = window.location.hash.replace(/^#\/?/, "");
   const parts = h.split("/").filter(Boolean);
+  if (parts.length === 0) return { intro: true };
+  if (parts[0] === "intro") return { intro: true };
   if (parts.length >= 2) {
     return { id: parts[0], view: parts[1] === "memory" ? "memory" : "chat" };
   }
-  if (parts.length === 1) return { id: parts[0], view: "chat" };
-  return { id: state.chaptersMeta[0]?.id || "001", view: "chat" };
+  return { id: parts[0], view: "chat" };
 }
 
 function setHash(id, view) {
+  if (!id) {
+    window.location.hash = "#/";
+    return;
+  }
   const v = view === "memory" ? "memory" : "chat";
   window.location.hash = `#/${id}/${v}`;
+}
+
+function openSidebar() {
+  document.body.classList.remove("sidebar-collapsed");
+  document.body.classList.add("sidebar-open");
+  $("sidebar").setAttribute("aria-hidden", "false");
+  $("btn-sidebar-open").setAttribute("aria-expanded", "true");
+  $("scrim").hidden = false;
+}
+function closeSidebar() {
+  document.body.classList.remove("sidebar-open");
+  document.body.classList.add("sidebar-collapsed");
+  $("sidebar").setAttribute("aria-hidden", "true");
+  $("btn-sidebar-open").setAttribute("aria-expanded", "false");
+  $("scrim").hidden = true;
 }
 
 async function loadManifest() {
@@ -179,7 +218,7 @@ async function loadChapter(id, view) {
 
   const [tMd, mMd] = await Promise.all([fetchText(tPath), fetchText(mPath)]);
   const parsed = parseTranscript(tMd);
-  $("session-title").textContent = parsed.title || `Chat ${id}`;
+  document.title = parsed.title ? `${parsed.title} — nabokov-2` : `Chapter ${id} — nabokov-2`;
   renderChat(parsed.turns);
 
   const memHtml = marked.parse(mMd, { headerIds: false });
@@ -209,7 +248,10 @@ function buildSidebar() {
     btn.className = "chapter-btn";
     btn.dataset.id = ch.id;
     btn.innerHTML = `<span class="num">Chapter ${ch.id}</span><span class="name" data-title="${ch.id}">…</span>`;
-    btn.addEventListener("click", () => setHash(ch.id, "chat"));
+    btn.addEventListener("click", () => {
+      setHash(ch.id, "chat");
+      closeSidebar();
+    });
     nav.appendChild(btn);
   });
 
@@ -225,30 +267,36 @@ function buildSidebar() {
   });
 }
 
+function currentChapterId() {
+  const h = parseHash();
+  if (h.intro) return state.chaptersMeta[0]?.id;
+  return h.id;
+}
+
 function wireUi() {
   $("tab-transcript").addEventListener("click", () => {
-    const { id } = parseHash();
-    setHash(id, "chat");
+    const id = currentChapterId();
+    if (id) setHash(id, "chat");
   });
   $("tab-memory").addEventListener("click", () => {
-    const { id } = parseHash();
-    setHash(id, "memory");
+    const id = currentChapterId();
+    if (id) setHash(id, "memory");
   });
   $("btn-to-memory").addEventListener("click", () => {
-    const { id } = parseHash();
-    setHash(id, "memory");
+    const id = currentChapterId();
+    if (id) setHash(id, "memory");
   });
   $("btn-back-chat").addEventListener("click", () => {
-    const { id } = parseHash();
-    setHash(id, "chat");
+    const id = currentChapterId();
+    if (id) setHash(id, "chat");
   });
   $("btn-prev").addEventListener("click", () => {
-    const { id } = parseHash();
+    const id = currentChapterId();
     const idx = state.chaptersMeta.findIndex((c) => c.id === id);
     if (idx > 0) setHash(state.chaptersMeta[idx - 1].id, "chat");
   });
   $("btn-next").addEventListener("click", () => {
-    const { id } = parseHash();
+    const id = currentChapterId();
     const idx = state.chaptersMeta.findIndex((c) => c.id === id);
     if (idx >= 0 && idx < state.chaptersMeta.length - 1) {
       setHash(state.chaptersMeta[idx + 1].id, "chat");
@@ -258,6 +306,26 @@ function wireUi() {
     $("btn-next").click();
   });
 
+  $("btn-begin").addEventListener("click", () => {
+    const first = state.chaptersMeta[0]?.id;
+    if (first) setHash(first, "chat");
+  });
+
+  $("btn-sidebar-open").addEventListener("click", openSidebar);
+  $("btn-sidebar-close").addEventListener("click", closeSidebar);
+  $("scrim").addEventListener("click", closeSidebar);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeSidebar();
+    if (e.key === "Enter" && parseHash().intro) {
+      const tag = (e.target && e.target.tagName) || "";
+      if (tag !== "INPUT" && tag !== "TEXTAREA") {
+        e.preventDefault();
+        $("btn-begin").click();
+      }
+    }
+  });
+
   window.addEventListener("hashchange", () => {
     route().catch((e) => showToast(e.message, true));
   });
@@ -265,28 +333,25 @@ function wireUi() {
 
 async function route() {
   if (!state.config) await loadManifest();
-  const { id, view } = parseHash();
-  if (!state.chaptersMeta.some((c) => c.id === id)) {
-    showToast(`Unknown chapter ${id}`, true);
-    return;
-  }
   const gh = state.config.github;
   $("repo-link").href = `https://github.com/${gh.owner}/${gh.repo}/tree/${gh.branch}/nabokov-2`;
   $("source-hint").textContent = `${gh.owner}/${gh.repo}@${gh.branch}`;
-  await loadChapter(id, view);
+
+  const h = parseHash();
+  if (h.intro) {
+    showIntro();
+    return;
+  }
+  if (!state.chaptersMeta.some((c) => c.id === h.id)) {
+    showToast(`Unknown chapter ${h.id}`, true);
+    return;
+  }
+  await loadChapter(h.id, h.view);
 }
 
 async function boot() {
   try {
     await loadManifest();
-    if (!window.location.hash || window.location.hash === "#") {
-      const first = state.chaptersMeta[0]?.id;
-      if (first) {
-        const url = new URL(window.location.href);
-        url.hash = `#/${first}/chat`;
-        history.replaceState(null, "", url.toString());
-      }
-    }
     buildSidebar();
     wireUi();
     $("repo-link").href = `https://github.com/${state.config.github.owner}/${state.config.github.repo}`;
@@ -294,7 +359,7 @@ async function boot() {
   } catch (e) {
     console.error(e);
     showToast(e.message || String(e), true);
-    $("session-title").textContent = "Error loading reader";
+    document.title = "nabokov-2 — error";
   }
 }
 
