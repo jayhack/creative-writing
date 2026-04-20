@@ -47,6 +47,15 @@ a:hover {
   display: none !important;
 }
 
+/* Avoid intro/home flash on deep links: inline script sets .reader-route-chapter before paint. */
+html.reader-route-chapter:not(.reader-booted) #panel-intro {
+  display: none !important;
+}
+html.reader-route-chapter:not(.reader-booted) #panel-chat,
+html.reader-route-chapter:not(.reader-booted) #panel-memory {
+  visibility: hidden;
+}
+
 /* Sidebar (off-canvas, collapsed by default) */
 .sidebar {
   position: fixed;
