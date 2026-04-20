@@ -144,8 +144,9 @@ function setIntroMode(isIntro) {
 
 function setView(mode) {
   const isMem = mode === "memory";
-  setIntroMode(false);
+  // Show the target panel before revealing the bottom nav so the bar never paints alone.
   showOnly(isMem ? "panel-memory" : "panel-chat");
+  setIntroMode(false);
   $("tab-transcript").classList.toggle("active", !isMem);
   $("tab-transcript").setAttribute("aria-selected", String(!isMem));
   $("tab-memory").classList.toggle("active", isMem);
@@ -155,8 +156,8 @@ function setView(mode) {
 }
 
 function showIntro() {
-  setIntroMode(true);
   showOnly("panel-intro");
+  setIntroMode(true);
   setTimeout(() => $("btn-begin")?.focus(), 0);
 }
 
@@ -219,10 +220,6 @@ async function ensureChapterTitle(id) {
 }
 
 async function loadChapter(id, view) {
-  // Clear reader-route-chapter pre-paint CSS before setView shows #bottom-nav.
-  // Otherwise the nav can appear while #panel-chat is still visibility:hidden (flicker).
-  markReaderBooted();
-
   const base = state.config.contentPath;
   const tPath = `${base}/chat-${id}/transcript.md`;
   const mPath = `${base}/chat-${id}/memory.md`;
@@ -235,6 +232,9 @@ async function loadChapter(id, view) {
   const memHtml = marked.parse(mMd, { headerIds: false });
   $("memory-body").innerHTML = memHtml;
 
+  // Pre-paint CSS keeps chat hidden until booted; clear it only after content is in the DOM,
+  // immediately before setView — otherwise the bottom nav can show over a blank main (flicker).
+  markReaderBooted();
   setView(view === "memory" ? "memory" : "chat");
 
   const idx = state.chaptersMeta.findIndex((c) => c.id === id);
