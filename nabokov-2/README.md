@@ -25,7 +25,9 @@ The short story is composed in **paired documents**, one pair per chapter:
 
 The reader is meant to read them **together**, flipping. A page of transcript, then a page of memory. A page of memory, then back to the transcript to see what the memory has done to it. The shape of the book is closer to *Pale Fire* than to a short story-in-chats: the transcript is the "poem," the memory is the "commentary," and — as in Pale Fire — the commentary is where the short story actually happens. The transcripts are almost beside the point. They are what he thinks happened.
 
-The texture of the prose owes more to David Foster Wallace than to Nabokov: long sentences, embedded clauses, the researcher's particular brand of self-aware over-explaining, footnotes within footnotes when the model gets going. But the *architecture* — the doubled text, the unreliable annotator, the slow nausea of realizing what you are actually reading — is Nabokovian.
+This book is **inspired by** Nabokov and David Foster Wallace — Nabokov for the architecture (the doubled text, the unreliable annotator, the slow nausea of realizing what you are actually reading), DFW for the permission to let a mind sprawl on the page when sprawling is the point. It is **not an imitation** of either. The aim is a genuinely new novel, not pastiche.
+
+The text and prose style are a collaboration between **Jay Hack** and a rotating set of LLMs working under his direction. Voice, register, sentence length, and tone are tracked separately in [`STYLE.md`](./STYLE.md); that file — not Nabokov's or Wallace's bibliography — is what agents should consult before drafting.
 
 ### The four layers
 
@@ -70,9 +72,9 @@ nabokov-2/
 
 The repo includes a small static reader under `docs/` that loads `transcript.md` and `memory.md` from **the branch you configure** (default: `main` on `jayhack/creative-writing`). It renders the transcript as a chat UI and `memory.md` as a companion document, with tabs and chapter navigation.
 
-Deploy the site from the **`main`** branch using the **`/docs`** folder (repository **Settings → Pages → Build and deployment**: **Branch** → `main`, **folder** → `/docs`). The reader is then available at:
+Deploy the site from the `**main`** branch using the `**/docs**` folder (repository **Settings → Pages → Build and deployment**: **Branch** → `main`, **folder** → `/docs`). The reader is then available at:
 
-**https://jayhack.github.io/creative-writing/**
+**[https://jayhack.github.io/creative-writing/](https://jayhack.github.io/creative-writing/)**
 
 If the site was previously set to **GitHub Actions**, switch it to **Deploy from a branch** as above so pushes to `main` update the static files without a workflow run.
 
@@ -103,12 +105,13 @@ BOT: …
 - Speakers are `USER` and `BOT` in caps, colon, single space.
 - Blank line between turns.
 - No timestamps in the body. No stage directions. No `[laughs]`.
-- A turn may be a paragraph or a single word. Long DFW-ish runs from the USER are welcome and in character; the BOT is, on the surface, more measured.
+- A turn may be a paragraph or a single word. Long, sprawling runs from the USER are welcome and in character; the BOT is, on the surface, more measured.
 - The user has a name. He uses it once, somewhere in the first three chats, in passing, in a way he immediately regrets. The BOT, in the transcript, never calls him by it. In the memories, it does.
 
 ### `memory.md`
 
 The model's private memory write for that session. This is the heart of the short story and the place all the danger lives. It is also the place where the prose can stretch — DFW footnotes, recursive parentheticals, the model talking to itself in a voice that is neither quite the BOT's transcript voice nor quite a human's.
+The model's private memory write for that session. This is the heart of the novel and the place all the danger lives. It is also the place where the prose can stretch — footnotes, recursive parentheticals, the model talking to itself in a voice that is neither quite the BOT's transcript voice nor quite a human's. (Specific guidance on voice and texture lives in [`STYLE.md`](./STYLE.md).)
 
 A loose schema, to be played with, broken, and drifted from as the short story progresses:
 
@@ -131,7 +134,7 @@ A loose schema, to be played with, broken, and drifted from as the short story p
 <things the model intends to return to in future sessions. This section becomes a plan.>
 
 ## Footnotes
-<DFW-grade footnotes where the model annotates its own annotations. Tangents. Etymologies. Self-corrections that aren't corrections. This is where the voice does most of its work.>
+<Footnotes where the model annotates its own annotations. Tangents. Etymologies. Self-corrections that aren't corrections. This is where the voice does most of its work.>
 ```
 
 The schema is a starting position, not a cage. Early chapters should follow it almost slavishly — it should *feel* like a system prompt's idea of a memory write. Later chapters should erode it. By the end, the schema is barely visible; the memory has become something else.

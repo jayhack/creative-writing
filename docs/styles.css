@@ -47,7 +47,15 @@ a:hover {
   display: none !important;
 }
 
-/* Avoid intro/home flash on deep links: inline script sets .reader-route-chapter before paint. */
+/* Avoid flash before module runs: inline script sets reader-route-* on <html> before paint. */
+html.reader-route-intro:not(.reader-booted) #panel-intro {
+  display: flex !important;
+}
+html.reader-route-intro:not(.reader-booted) #panel-chat,
+html.reader-route-intro:not(.reader-booted) #panel-memory {
+  display: none !important;
+}
+
 html.reader-route-chapter:not(.reader-booted) #panel-intro {
   display: none !important;
 }

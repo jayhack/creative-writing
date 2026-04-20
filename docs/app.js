@@ -339,7 +339,7 @@ function wireUi() {
 }
 
 function markReaderBooted() {
-  document.documentElement.classList.remove("reader-route-chapter");
+  document.documentElement.classList.remove("reader-route-chapter", "reader-route-intro");
   document.documentElement.classList.add("reader-booted");
 }
 

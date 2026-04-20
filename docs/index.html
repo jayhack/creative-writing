@@ -10,8 +10,10 @@
     (function () {
       var h = (location.hash || "").replace(/^#\/?/, "");
       var parts = h.split("/").filter(Boolean);
-      if (parts.length === 0) return;
-      if (parts[0] === "intro") return;
+      if (parts.length === 0 || parts[0] === "intro") {
+        document.documentElement.classList.add("reader-route-intro");
+        return;
+      }
       document.documentElement.classList.add("reader-route-chapter");
     })();
   </script>
