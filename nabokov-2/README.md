@@ -1,5 +1,7 @@
 # nabokov-2
 
+[![Read the novel](https://img.shields.io/badge/Read%20the%20novel-238636?style=for-the-badge)](https://jayhack.github.io/creative-writing/)
+
 A novel that experiments with the form of fiction.
 
 ## The premise
