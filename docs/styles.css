@@ -290,54 +290,41 @@ body.sidebar-open .scrim {
   padding: 0.5rem 1rem 0;
 }
 .messages {
-  max-width: 52rem;
+  max-width: 46rem;
   margin: 0 auto;
   padding: 1rem 0 1rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 .msg {
-  display: flex;
-  gap: 0.75rem;
-  align-items: flex-start;
+  display: block;
+  width: 100%;
 }
-.msg.user {
-  flex-direction: row-reverse;
-}
-.avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-.msg.user .avatar {
-  background: #3d5a80;
-  color: #e8eef5;
-}
-.msg.bot .avatar {
-  background: var(--accent);
-  color: #04140f;
-}
+.avatar { display: none; }
+
 .bubble {
-  max-width: min(100%, 42rem);
-  padding: 0.85rem 1rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: var(--bot-bubble);
-  white-space: pre-wrap;
+  width: 100%;
   word-wrap: break-word;
 }
 .msg.user .bubble {
-  background: var(--user-bubble);
-  border-color: #2a4a6a;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.95rem 1.1rem;
+  color: var(--text);
+}
+.msg.bot .bubble {
+  background: transparent;
+  border: none;
+  padding: 0.25rem 0;
+  color: #e6e6ee;
+}
+.bubble p {
+  margin: 0 0 0.7rem;
+}
+.bubble p:last-child {
+  margin-bottom: 0;
 }
 .bubble code {
   font-family: var(--mono);
@@ -347,14 +334,14 @@ body.sidebar-open .scrim {
   border-radius: 4px;
 }
 .bubble-pre {
-  margin: 0.5rem 0 0;
-  padding: 0.75rem 0.85rem;
+  margin: 0.75rem 0;
+  padding: 0.85rem 1rem;
   border-radius: 8px;
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0b0b0e;
+  border: 1px solid var(--border);
   overflow-x: auto;
   font-size: 0.82rem;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 .bubble-pre code {
   background: transparent;

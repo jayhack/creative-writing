@@ -70,15 +70,26 @@ function inlineCode(md) {
   return md.replace(/`([^`]+)`/g, "<code>$1</code>");
 }
 
+function renderTextBlock(s) {
+  const trimmed = s.replace(/^\n+|\n+$/g, "");
+  if (!trimmed) return "";
+  const paragraphs = trimmed.split(/\n{2,}/);
+  return paragraphs
+    .map((p) => {
+      const escaped = escapeHtml(p);
+      const withCode = inlineCode(escaped);
+      return `<p>${withCode.replace(/\n/g, "<br />")}</p>`;
+    })
+    .join("");
+}
+
 function formatBubbleText(text) {
   const parts = [];
   let pos = 0;
   const re = /```(?:[a-zA-Z0-9_-]*\n)?([\s\S]*?)```/g;
   let m;
   while ((m = re.exec(text)) !== null) {
-    if (m.index > pos) {
-      parts.push({ kind: "text", s: text.slice(pos, m.index) });
-    }
+    if (m.index > pos) parts.push({ kind: "text", s: text.slice(pos, m.index) });
     parts.push({ kind: "code", s: m[1].replace(/\n$/, "") });
     pos = m.index + m[0].length;
   }
@@ -86,13 +97,11 @@ function formatBubbleText(text) {
   if (parts.length === 0) parts.push({ kind: "text", s: text });
 
   return parts
-    .map((p) => {
-      if (p.kind === "code") {
-        return `<pre class="bubble-pre"><code>${escapeHtml(p.s)}</code></pre>`;
-      }
-      const escaped = escapeHtml(p.s);
-      return `<span class="bubble-inline">${inlineCode(escaped).replace(/\n/g, "<br />")}</span>`;
-    })
+    .map((p) =>
+      p.kind === "code"
+        ? `<pre class="bubble-pre"><code>${escapeHtml(p.s)}</code></pre>`
+        : renderTextBlock(p.s)
+    )
     .join("");
 }
 
@@ -101,10 +110,8 @@ function renderChat(turns) {
   el.innerHTML = turns
     .map((t) => {
       const side = t.role === "user" ? "user" : "bot";
-      const label = t.role === "user" ? "You" : "Bot";
       return `
         <div class="msg ${side}">
-          <div class="avatar" aria-hidden="true">${label === "You" ? "U" : "B"}</div>
           <div class="bubble">${formatBubbleText(t.text)}</div>
         </div>`;
     })
