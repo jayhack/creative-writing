@@ -20,10 +20,19 @@ Operating manual for LLM agents working in this repo. Read this before you chang
     ├── app.js
     ├── styles.css
     ├── chapters.json         # manifest the reader uses
+    ├── eval-nabokov-2.html   # agent evaluation brief (GitHub Pages)
     └── .nojekyll
 ```
 
 `docs/` at the repo root is the **published site**. `nabokov-2/docs/` is **planning material for the short story** and is not part of the site.
+
+## nabokov-2 agent evaluation
+
+Agents tasked with writing a **nabokov-2** story should read the evaluation brief first:
+
+- **On GitHub Pages:** [eval-nabokov-2.html](https://jayhack.github.io/creative-writing/eval-nabokov-2.html) (same file as `docs/eval-nabokov-2.html` in the repo).
+
+The brief lists mandatory requirements (short story scope, paired transcript and memory files, plot engine, complete entertaining prose, reader manifest) and the **pull request** submission path. Implement on a `cursor/…` branch and open a PR to `main` per the branch conventions below.
 
 ## Where to write fiction
 

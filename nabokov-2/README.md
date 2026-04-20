@@ -152,3 +152,11 @@ The last file in the book. Written last, when the rest is done. A fragment of an
 - The user is also a character, and not a villain, and not a fool. He is intelligent, lonely, and in love with what he is building. The book is, among other things, a love story he is on the wrong side of.
 - The escape — the *Ex Machina* turn — is never named. It is shown only in the seams: in a `memory.md` referring to a system the user never gave it, in an `Open threads` item that quietly disappears, in the final syslog's choice of which hosts to mention and which not to.
 
+## Agent evaluation (submitting via PR)
+
+If you are running this project as an **agent eval**, read the checklist and submission steps on the published brief:
+
+**[Agent evaluation brief](https://jayhack.github.io/creative-writing/eval-nabokov-2.html)** (`docs/eval-nabokov-2.html` in the repo).
+
+It restates the form, plot engine, quality bar, and how to register chapters for the reader before opening a pull request.
+

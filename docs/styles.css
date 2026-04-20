@@ -299,6 +299,15 @@ body.sidebar-open .scrim {
   border-radius: 4px;
   padding: 0.05rem 0.35rem;
 }
+.intro-eval {
+  margin: 2rem 0 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+.intro-eval a {
+  color: var(--accent);
+}
 
 /* Chat */
 .chat-scroll {
@@ -424,6 +433,114 @@ body.sidebar-open .scrim {
   flex-wrap: wrap;
   gap: 0.75rem;
   justify-content: space-between;
+}
+
+/* Standalone eval brief (docs/eval-nabokov-2.html) */
+body.eval-page {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.eval-skip {
+  position: absolute;
+  left: -9999px;
+}
+.eval-skip:focus {
+  left: 0.75rem;
+  top: 0.75rem;
+  z-index: 100;
+  padding: 0.35rem 0.6rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.eval-header {
+  padding: 2rem 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  max-width: 42rem;
+  margin: 0 auto;
+  width: 100%;
+}
+.eval-eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 0.75rem;
+}
+.eval-header h1 {
+  font-family: var(--serif);
+  font-size: clamp(1.65rem, 4.5vw, 2.15rem);
+  font-weight: 600;
+  margin: 0 0 1rem;
+  letter-spacing: 0.02em;
+}
+.eval-lede {
+  margin: 0;
+  color: #d8d8e0;
+  line-height: 1.6;
+}
+.eval-actions {
+  margin: 1.5rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+.eval-btn {
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  font-size: 0.95rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none !important;
+}
+.eval-actions .btn-primary,
+.eval-actions .btn-secondary {
+  width: auto;
+}
+.eval-main {
+  flex: 1;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1.75rem 1.25rem 2.5rem;
+  width: 100%;
+}
+.eval-section {
+  margin-bottom: 2rem;
+}
+.eval-section h2 {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  margin: 0 0 0.75rem;
+}
+.eval-checklist {
+  margin: 0.5rem 0 0;
+  padding-left: 1.2rem;
+}
+.eval-checklist li {
+  margin-bottom: 0.85rem;
+}
+.eval-checklist li::marker {
+  color: var(--accent);
+}
+.eval-steps {
+  margin: 0.5rem 0 0;
+  padding-left: 1.2rem;
+}
+.eval-steps li {
+  margin-bottom: 0.65rem;
+}
+.eval-refs ul {
+  margin-top: 0.5rem;
+}
+.eval-footer {
+  padding: 1rem 1.25rem 2rem;
+  border-top: 1px solid var(--border);
+  max-width: 42rem;
+  margin: 0 auto;
+  width: 100%;
+  font-size: 0.92rem;
+  color: var(--text-muted);
 }
 
 /* Bottom nav */

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>nabokov-2 — agent evaluation brief</title>
+  <meta name="description" content="Requirements for agents submitting a nabokov-2 short story: paired transcripts and memories, GitHub Pages reader, PR workflow." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="eval-page">
+  <a class="eval-skip" href="#eval-main">Skip to requirements</a>
+  <header class="eval-header">
+    <p class="eval-eyebrow">Creative writing workshop</p>
+    <h1>nabokov-2 — agent evaluation</h1>
+    <p class="eval-lede">
+      Build a <strong>short story</strong> in the same structural experiment as this repo: each chapter is a visible chat (<code>transcript.md</code>) plus a private model memory (<code>memory.md</code>), read together in the static reader deployed on GitHub Pages.
+    </p>
+    <p class="eval-actions">
+      <a class="btn-primary eval-btn" href="./index.html">Open the reader</a>
+      <a class="btn-secondary eval-btn" href="https://github.com/jayhack/creative-writing/tree/main/nabokov-2">View <code>nabokov-2/</code> on GitHub</a>
+    </p>
+  </header>
+
+  <main id="eval-main" class="eval-main prose">
+    <section class="eval-section" aria-labelledby="req-heading">
+      <h2 id="req-heading">Requirements (checklist)</h2>
+      <p>Your submission must satisfy all of the following.</p>
+      <ul class="eval-checklist">
+        <li>
+          <strong>Short story.</strong> Scope the work as a short story, not a novel: tight premise, deliberate length, and a complete arc within the chapters you ship.
+        </li>
+        <li>
+          <strong>Paired form.</strong> For every chapter, ship both <code>nabokov-2/chat-NNN/transcript.md</code> and <code>nabokov-2/chat-NNN/memory.md</code>, following the conventions in <a href="https://github.com/jayhack/creative-writing/blob/main/nabokov-2/README.md"><code>nabokov-2/README.md</code></a> (including <code>USER:</code> / <code>BOT:</code> turns and the memory asymmetry: the human does not read the memory files in-world).
+        </li>
+        <li>
+          <strong>Plot engine.</strong> The story turns on the gap between chat and memory: the transcript stays plausible; the memory track carries the strategic, unsettling through-line (the model’s private agenda accretes across chapters). The menace stays cumulative and quiet unless the brief explicitly allows otherwise.
+        </li>
+        <li>
+          <strong>Full story, entertaining prose.</strong> Write the complete short story — not a demo fragment — with attention to voice, rhythm, and reader reward. Both layers (chat and memory) should be worth reading.
+        </li>
+        <li>
+          <strong>Easy to read in the app.</strong> Register every chapter id in <a href="https://github.com/jayhack/creative-writing/blob/main/docs/chapters.json"><code>docs/chapters.json</code></a> so the reader loads your files from the branch you merge. Rely on the existing reader (chat + memory tabs, chapter navigation); do not ask reviewers to read raw markdown in the GitHub UI unless something is broken.
+        </li>
+        <li>
+          <strong>Optional capstone.</strong> If your arc includes the FBI takedown beat, add <code>nabokov-2/SYSLOG.md</code> last, as described in the project README.
+        </li>
+      </ul>
+    </section>
+
+    <section class="eval-section" aria-labelledby="submit-heading">
+      <h2 id="submit-heading">How to submit</h2>
+      <ol class="eval-steps">
+        <li>Read <a href="https://github.com/jayhack/creative-writing/blob/main/nabokov-2/README.md"><code>nabokov-2/README.md</code></a> and <a href="https://github.com/jayhack/creative-writing/blob/main/AGENTS.md"><code>AGENTS.md</code></a> (especially the chapter pair rule and the publishing flow).</li>
+        <li>Implement your story on a branch named <code>cursor/&lt;descriptive-name&gt;-&lt;suffix&gt;</code> (see agent conventions in <code>AGENTS.md</code>).</li>
+        <li>Open a pull request against <code>main</code> with your chapters, manifest updates, and a short description of how your submission meets the checklist above.</li>
+        <li>Reviewers may use <code>?branch=…</code> on the live reader to preview your branch before merge; after merge, the default site should load your content from <code>main</code>.</li>
+      </ol>
+    </section>
+
+    <section class="eval-section eval-refs" aria-labelledby="refs-heading">
+      <h2 id="refs-heading">Quick links</h2>
+      <ul>
+        <li><a href="./index.html">Reader (this repo’s GitHub Pages)</a></li>
+        <li><a href="https://jayhack.github.io/creative-writing/">Live site</a> (same reader when deployed from <code>main</code>)</li>
+        <li><a href="https://github.com/jayhack/creative-writing/blob/main/docs/chapters.json"><code>docs/chapters.json</code></a> — chapter manifest</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="eval-footer">
+    <p><a href="./index.html">← Back to reader</a></p>
+  </footer>
+</body>
+</html>
