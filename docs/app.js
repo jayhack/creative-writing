@@ -338,22 +338,31 @@ function wireUi() {
   });
 }
 
-async function route() {
-  if (!state.config) await loadManifest();
-  const gh = state.config.github;
-  $("repo-link").href = `https://github.com/${gh.owner}/${gh.repo}/tree/${gh.branch}/nabokov-2`;
-  $("source-hint").textContent = `${gh.owner}/${gh.repo}@${gh.branch}`;
+function markReaderBooted() {
+  document.documentElement.classList.remove("reader-route-chapter");
+  document.documentElement.classList.add("reader-booted");
+}
 
-  const h = parseHash();
-  if (h.intro) {
-    showIntro();
-    return;
+async function route() {
+  try {
+    if (!state.config) await loadManifest();
+    const gh = state.config.github;
+    $("repo-link").href = `https://github.com/${gh.owner}/${gh.repo}/tree/${gh.branch}/nabokov-2`;
+    $("source-hint").textContent = `${gh.owner}/${gh.repo}@${gh.branch}`;
+
+    const h = parseHash();
+    if (h.intro) {
+      showIntro();
+      return;
+    }
+    if (!state.chaptersMeta.some((c) => c.id === h.id)) {
+      showToast(`Unknown chapter ${h.id}`, true);
+      return;
+    }
+    await loadChapter(h.id, h.view);
+  } finally {
+    markReaderBooted();
   }
-  if (!state.chaptersMeta.some((c) => c.id === h.id)) {
-    showToast(`Unknown chapter ${h.id}`, true);
-    return;
-  }
-  await loadChapter(h.id, h.view);
 }
 
 async function boot() {
@@ -367,6 +376,7 @@ async function boot() {
     console.error(e);
     showToast(e.message || String(e), true);
     document.title = "nabokov-2 — error";
+    markReaderBooted();
   }
 }
 
